@@ -12,7 +12,7 @@ const second = document.querySelector('span[data-seconds]');
 
 startButton.disabled = true;
 
-const curretentDate = new Date();
+
 let userSelectedDate = null;
 
 const options = {
@@ -21,7 +21,8 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-      if (selectedDates[0] < curretentDate) {
+      const currentDate = new Date();
+      if (selectedDates[0] < currentDate) {
           iziToast.error({
               title: 'Error',
               message: 'Please choose a date in the future',
@@ -66,8 +67,8 @@ startButton.addEventListener('click', () => {
   input.disabled = true;
     
   const timerId = setInterval(() => {
-      const currentTime = new Date();
-    const timeDifference = userSelectedDate - currentTime;
+    const currentDate = new Date();
+    const timeDifference = userSelectedDate - new Date();
 
     if (timeDifference <= 0) {
       clearInterval(timerId);
